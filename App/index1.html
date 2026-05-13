@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ពុទ្ធិកបឋមសិក្សាសម្ដេចព្រះអភិសិរីធម្មិការាម</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f4f6fb;
+            overflow-x: hidden;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            background: #173a66;
+            position: fixed;
+            left: 0;
+            top: 0;
+            color: white;
+            padding: 20px 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #fff;
+            color: #173a66;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .menu-title {
+            font-size: 12px;
+            opacity: .6;
+            margin: 25px 10px 10px;
+            text-transform: uppercase;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 15px;
+            border-radius: 12px;
+            color: #d7deea;
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: .3s;
+        }
+
+        .menu-item:hover,
+        .menu-item.active {
+            background: #2a4f7f;
+            color: white;
+        }
+
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge-number {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #ffb020;
+            color: #fff;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-box {
+            position: absolute;
+            bottom: 20px;
+            left: 15px;
+            right: 15px;
+            background: #234a78;
+            padding: 12px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #f4b63f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* MAIN */
+        .main {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        /* TOPBAR */
+        .topbar {
+            background: #fff;
+            border-radius: 16px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+        }
+
+        .sidebar.hide-mobile {
+            display: none !important;
+        }
+
+        #sidebarToggle {
+            border-radius: 12px;
+            min-width: 48px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            background: #f5f7fb;
+            color: #173a66;
+        }
+
+        .search-box {
+            position: relative;
+            width: 360px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .search-box input {
+            padding-left: 42px;
+            border-radius: 12px;
+            height: 45px;
+            border: 1px solid #ddd;
+        }
+
+        .top-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notification {
+            position: relative;
+            font-size: 20px;
+        }
+
+        .notification span {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            width: 18px;
+            height: 18px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CONTENT */
+        .content-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn-custom {
+            border-radius: 12px;
+            padding: 10px 18px;
+            font-weight: 500;
+        }
+
+        .btn-primary-custom {
+            background: #173a66;
+            color: white;
+            border: none;
+        }
+
+        .btn-light-custom {
+            background: #f5f7fb;
+            border: 1px solid #e2e5ec;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .filter-row .form-control,
+        .filter-row .form-select {
+            border-radius: 12px;
+            height: 48px;
+        }
+
+        .table {
+            vertical-align: middle;
+        }
+
+        .table th {
+            color: #777;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 1px solid #eee;
+        }
+
+        .table td {
+            font-size: 14px;
+            padding: 18px 10px;
+        }
+
+        .gender-male {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .gender-female {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+
+        .pagination .page-link {
+            border: none;
+            color: #173a66;
+            border-radius: 10px;
+            margin: 0 3px;
+        }
+
+        .pagination .active .page-link {
+            background: #173a66;
+            color: white;
+        }
+
+        .nameStudent {
+            font-family: "Khmer OS Battambang", sans-serif;
+        }
+
+        .khmer-font {
+            font-family: "Khmer OS Battambang", sans-serif;
+        }
+
+        @media(max-width:991px) {
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .topbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">
+                <img src="../images/WatTn.png" alt="BCMS logo">
+            </div>
+            <div>
+                <h5 class="m-0" style="font-size: 20px; font-family: Khmer OS Moul;">ពុ.ប.ស.ធរ</h5>
+            </div>
+        </div>
+        <div class="menu-title">Main</div>
+        <a href="../Dashboard.html" class="menu-item">
+            <div class="menu-left">
+                <i class="bi bi-grid"></i>Dashboard
+            </div>
+        </a>
+        <a href="../Class.html" class="menu-item">
+            <div class="menu-left">
+                <i class="bi bi-people"></i>
+                Class
+            </div>
+            <div class="badge-number">7</div>
+        </a>
+        <div class="menu-title">Management</div>
+        <a href="../Admin.html" class="menu-item">
+            <div class="menu-left">
+                <i class="bi bi-person"></i>
+                Admin
+            </div>
+        </a>
+        <a href="index1.html" class="menu-item active">
+            <div class="menu-left">
+                <i class="bi bi-people"></i>
+                Attendent
+            </div>
+            <div class="badge-number">12</div>
+        </a>
+        <a href="../Teacher.html" class="menu-item">
+            <div class="menu-left">
+                <i class="bi bi-shield-check"></i>
+                Teacher
+            </div>
+        </a>
+        <a href="../Library.html" class="menu-item">
+            <div class="menu-left">
+                <i class="bi bi-people"></i>
+                Library
+            </div>
+        </a>
+        <div class="menu-title">System</div>
+        <a href="#" class="menu-item">
+            <div class="menu-left">
+                <i class="bi bi-bell"></i>
+                Notifications
+            </div>
+            <div class="badge-number">5</div>
+        </a>
+        <a href="#" class="menu-item">
+            <div class="menu-left">
+                <i class="bi bi-gear"></i>
+                Settings
+            </div>
+        </a>
+        <!-- Profile -->
+        <div class="profile-box" id="logoutButton" role="button" style="cursor:pointer;">
+            <div class="avatar"><i class="fa-solid fa-right-from-bracket"></i></div>
+            <div>
+                <div class="fw-semibold">Log Out</div>
+            </div>
+        </div>
+    </div>
+    <!-- Main -->
+    <div class="main">
+        <!-- Topbar -->
+        <div class="topbar">
+            <button id="sidebarToggle" class="d-lg-none" type="button">
+                <i class="bi bi-list"></i>
+            </button>
+            <div class="search-box">
+                <i class="bi bi-search"></i>
+                <input type="text" class="form-control" placeholder="Search certificates, names...">
+            </div>
+            <div class="top-right">
+                <div class="notification">
+                    <i class="bi bi-bell-fill"></i>
+                    <span>3</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <div class="avatar bg-primary text-white" style="width:40px;height:40px;">
+                        AR
+                    </div>
+                    <div>
+                        <div class="fw-semibold">Amara Reyes</div>
+                        <small class="text-muted">Administrator</small>
+                    </div>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Content -->
+        <div class="content-card">
+            <div class="header-flex">
+                <div>
+                    <h2 class="fw-bold">Attendent Students</h2>
+                    <p class="text-muted mb-0">
+                        12 records • 6 issued • 3 pending
+                    </p>
+                </div>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-custom btn-light-custom">
+                        <i class="bi bi-download"></i>
+                        Export All
+                    </button>
+                    <button class="btn btn-custom btn-primary-custom">
+                        <i class="bi bi-plus-lg"></i>
+                        New Registration
+                    </button>
+                </div>
+            </div>
+            <!-- Filters -->
+            <div class="filter-row">
+                <input type="text" class="form-control flex-grow-1"
+                    placeholder="Search by certificate #, child, parent, facility...">
+                <select class="form-select" style="max-width:180px;">
+                    <option>All Statuses</option>
+                    <option>Issued</option>
+                    <option>Pending</option>
+                </select>
+                <select class="form-select" style="max-width:180px;">
+                    <option>All Genders</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+                <button class="btn btn-light-custom btn-custom">
+                    <i class="bi bi-sliders"></i>
+                    More Filters
+                </button>
+            </div>
+            <!-- Table -->
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NAME KH</th>
+                            <th>NAME EN</th>
+                            <th>YES</th>
+                            <th>NOT</th>
+                            <th>Permission</th>
+                            <th>DOB</th>
+                            <th>GENDER</th>
+                            <th>Gmail</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="nameStudent"></tbody>
+                </table>
+            </div>
+            <!-- Pagination -->
+            <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-3">
+                <div class="text-muted">
+                    1-10 of 12
+                </div>
+                <nav>
+                    <ul class="pagination mb-0">
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        const data = [];
+
+        function getNameInitials(name) {
+            return name
+                .split(' ')
+                .filter(part => part.length > 0)
+                .map(part => part[0].toUpperCase())
+                .slice(0, 2)
+                .join('');
+        }
+
+        const storedRegisteredUsers = localStorage.getItem('registeredUsers');
+        const registeredUsers = storedRegisteredUsers ? JSON.parse(storedRegisteredUsers) : [];
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser')) || null;
+
+        if (registeredUsers.length > 0) {
+            registeredUsers.forEach(user => {
+                const newRow = {
+                    id: user.id,
+                    nameK: user.nameKH || user.username,
+                    nameE: user.username,
+                    dob: user.dob || '-',
+                    gender: user.gender || '-',
+                    gmail: user.email || '-',
+                    yes: user.yes || false,
+                    not: user.not || false,
+                    permission: user.permission || false,
+                    isRegistered: true
+                };
+                data.push(newRow);
+            });
+
+            const topUser = loggedInUser || registeredUsers[registeredUsers.length - 1];
+            const avatar = document.querySelector('.top-right .avatar');
+            const userNameLabel = document.querySelector('.top-right .fw-semibold');
+            const userRoleLabel = document.querySelector('.top-right small.text-muted');
+            if (topUser) {
+                if (avatar) avatar.textContent = getNameInitials(topUser.username);
+                if (userNameLabel) userNameLabel.textContent = topUser.username;
+                if (userRoleLabel) userRoleLabel.textContent = 'Registered User';
+            }
+        }
+
+        const tableBody = document.getElementById("tableBody");
+
+        function renderTable() {
+            tableBody.innerHTML = '';
+            data.forEach((item, index) => {
+                const genderClass =
+                    item.gender === "Male"
+                        ? "gender-male"
+                        : "gender-female";
+                const isRegistered = item.isRegistered === true;
+                const actions = isRegistered ? `<button class="btn btn-sm btn-primary edit-btn" data-index="${index}">Edit</button> <button class="btn btn-sm btn-danger delete-btn" data-index="${index}">Delete</button>` : '';
+                tableBody.innerHTML += `
+        <tr data-index="${index}">
+            <td>${item.id}</td>
+            <td class="fw-semibold khmer-font editable" data-field="nameK">
+                ${item.nameK}
+            </td>
+            <td class="fw-semibold editable" data-field="nameE">
+                ${item.nameE}
+            </td>
+            <td><input type="checkbox" class="status-checkbox" data-field="yes" ${item.yes ? 'checked' : ''}></td>
+            <td><input type="checkbox" class="status-checkbox" data-field="not" ${item.not ? 'checked' : ''}></td>
+            <td><input type="checkbox" class="status-checkbox" data-field="permission" ${item.permission ? 'checked' : ''}></td>
+            <td class="editable" data-field="dob">
+                ${item.dob}
+            </td>
+          <td class="${genderClass} editable" data-field="gender">
+            ${item.gender}
+          </td>
+          <td class="editable" data-field="gmail">
+            ${item.gmail || item.registrar || '-'}
+          </td>
+          <td>${actions}</td>
+        </tr>
+      `;
+            });
+        }
+
+        renderTable();
+
+        // Handle checkbox changes
+        document.addEventListener('change', function (e) {
+            if (e.target.classList.contains('status-checkbox')) {
+                const index = e.target.closest('tr').dataset.index;
+                const field = e.target.dataset.field;
+                data[index][field] = e.target.checked;
+                // For registered users, update localStorage
+                const userIndex = registeredUsers.findIndex(user => user.id === data[index].id);
+                if (userIndex !== -1) {
+                    registeredUsers[userIndex][field] = e.target.checked;
+                    localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+                }
+            }
+        });
+
+        // Handle edit button
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('edit-btn')) {
+                const index = e.target.dataset.index;
+                const row = e.target.closest('tr');
+                const isEditing = row.classList.contains('editing');
+
+                if (isEditing) {
+                    // Save changes
+                    row.querySelectorAll('.editable').forEach(cell => {
+                        const field = cell.dataset.field;
+                        const input = cell.querySelector('input');
+                        if (input) {
+                            data[index][field] = input.value;
+                            cell.innerHTML = input.value;
+                        }
+                    });
+                    // Update localStorage for registered users
+                    const userIndex = registeredUsers.findIndex(user => user.id === data[index].id);
+                    if (userIndex !== -1) {
+                        registeredUsers[userIndex] = { ...registeredUsers[userIndex], ...data[index] };
+                        localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+                    }
+                    e.target.textContent = 'Edit';
+                    row.classList.remove('editing');
+                } else {
+                    // Enter edit mode
+                    row.querySelectorAll('.editable').forEach(cell => {
+                        const field = cell.dataset.field;
+                        const currentValue = data[index][field];
+                        cell.innerHTML = `<input type="text" value="${currentValue}" class="form-control form-control-sm">`;
+                    });
+                    e.target.textContent = 'Save';
+                    row.classList.add('editing');
+                }
+            }
+
+            if (e.target.classList.contains('delete-btn')) {
+                const index = Number(e.target.dataset.index);
+                const rowId = data[index].id;
+
+                // Remove from data array
+                data.splice(index, 1);
+
+                // Remove from localStorage if this is a registered user
+                const userIndex = registeredUsers.findIndex(user => user.id === rowId);
+                if (userIndex !== -1) {
+                    registeredUsers.splice(userIndex, 1);
+                    localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+                }
+
+                // Re-render table after deletion
+                renderTable();
+            }
+        });
+
+        const logoutButton = document.getElementById('logoutButton');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', () => {
+                localStorage.removeItem('loggedInUser');
+                window.location.href = '../index.html';
+            });
+        }
+    </script>
+</body>
+
+</html>

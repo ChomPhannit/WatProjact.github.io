@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="CSS/Login.css">
+</head>
+
+<body>
+    <main class="container">
+        <section class="card" aria-labelledby="login-heading">
+            <div class="brand">
+                <img src="images/WatTn.png" alt="WatTn logo">
+                <h1 id="login-heading">ពុទ្ធិកបឋមសិក្សាសម្ដេចព្រះអភិសិរីធម្មិការាម</h1>
+            </div>
+            <form id="loginForm" novalidate>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" minlength="6"
+                        placeholder="Choose a secure password" required>
+                </div>
+                <button type="submit">Login</button>
+                <p>Don't have an account? <a href="Register.html">Register</a></p>
+                <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+            </form>
+        </section>
+    </main>
+    <script src="JS/Login.js"></script>
+</body>
+
+</html>
